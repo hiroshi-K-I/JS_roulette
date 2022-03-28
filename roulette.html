@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+    .container{
+        text-align: center;
+        float: left;
+        padding: 10px;
+    }
+    .outline {
+        text-align:center;
+    }
+    .title {
+        font-size: 50px;
+    }
+    .roulette1 {
+        display: inline-block;
+        border:1px solid #000000;
+        font-size:40px;
+        width:200px;
+    }
+    .roulette2 {
+        display: inline-block;
+        border:1px solid #000000;
+        font-size:40px;
+        width:900px;
+    }
+    #text_name{
+        width: 200px;
+        height:500px;
+        font-size: 20px;
+    }
+    </style>
+        <script language="javascript" type="text/javascript">
+
+            //参加者名をmemberNameArrayに格納する
+            var memberNameArray = [];
+            function addName(){
+                memberNameArray = document.getElementById("text_name").value.split(/\r?\n/g);
+            }
+            
+            //参加者ルーレット
+            var roulette1;
+            function start1() {
+                roulette1 = setInterval(function() {
+                    document.getElementById("roulette1").innerHTML = memberNameArray[Math.floor(Math.random()*memberNameArray.length)];
+                }, 50);
+            }
+            function stop1() {
+                if(roulette1) {
+                    clearInterval(roulette1);
+                }
+            }
+            
+            //話題ルーレット
+            var roulette2;
+            function start2() {
+                var wadai =[
+                    "週末何してた？",
+                    "最近読んだ本は？",
+                    "一番好きな力士は？",
+                    "きのこ派？たけのこ派？",
+                    "地球最後の日。なにする？",
+                    "最後の晩餐。何食べる？",
+                    "子供の頃見てたアニメは？",
+                    "最後に見た映画は？",
+                    "一億円当たりました。何する？",
+                    "学生時代のアルバイトは？",
+                    "最近のマイブームは？",
+                    "好きな歴史上の偉人は？",
+                    "好きな四文字熟語は？",
+                    "きのう何食べた？",
+                    "あなたの弱点は？",
+                    "20年前の自分に一言。",
+                    "あなたのルーティンは？",
+                    "最後に行った旅行先は？",
+                    "最近の一番高い買い物は？",
+                    "古今東西、移住するなら？",
+                    "息抜きの方法は？"
+                ]
+
+                roulette2 = setInterval(function() {
+                    var talkThemeArray = wadai;
+                    document.getElementById("roulette2").innerHTML = talkThemeArray[Math.floor(Math.random()*talkThemeArray.length)];
+                }, 50);
+            }
+            function stop2() {
+                if(roulette2) {
+                    clearInterval(roulette2);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <title>バイブス👆雑談会</title>
+
+        <h1 class="outline title">バイブス👆雑談会</h1>
+        <br />
+
+        <div class="container">
+            <div class="roulette1" id="roulette1">人</div>
+            <br />
+            <input type="button" value="スタート" id="start1" onclick="start1();"/>
+            <input type="button" value="ストップ" id="stop1" onclick="stop1();"/>
+        </div>
+        <div class="container">
+        <h1>さん、</h1>
+        </div>
+        <div class="container">
+            <div class="roulette2" id="roulette2">話題</div>
+            <br />
+            <input type="button" value="スタート" id="start2" onclick="start2();"/>
+            <input type="button" value="ストップ" id="stop2" onclick="stop2();"/>
+        </div>
+        <br style="clear:both;" /><br />
+        <hr /><br />
+        
+        <div class="outline">
+            <h1>参加者</h1>
+            <input type="button" value="追加" onclick="addName()" />
+            <br />
+            <textarea id="text_name">
+            </textarea>
+        </div>
+    </body>
+</html>
